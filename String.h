@@ -18,7 +18,7 @@ void string_init(String *str, const char *data) {
     str->capacity = _length + 1; 
     str->length = _length;
     
-    str->data = s_malloc(str->capacity);
+    str->data = s_calloc(str->capacity, sizeof(char));
 
     if (data != NULL) {
         strcpy(str->data, data);
@@ -28,10 +28,7 @@ void string_init(String *str, const char *data) {
 }
 
 void string_free(String *str) {
-    if (str->data) {
-        s_free(str->data);
-        str->data = NULL;
-    }
+    s_free(str->data);
     str->length = 0;
     str->capacity = 0;
 }
